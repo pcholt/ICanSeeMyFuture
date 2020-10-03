@@ -2,13 +2,16 @@ extends KinematicBody2D
 class_name Player, "res://Player2.png"
 
 var inputVector
-export var speed = 400
+export var speed = 200
 var mode = "initial"
 var recordingPositions = []
 var recordingTimes = []
 var time = 0
+var agitation = 0
 var playbackCursor = 0
 export var creation_order = 0 # increment when creating new players
+onready var explode = preload("res://Explode.tscn")
+var original_teleporter 
 
 func _ready():
 	pass
@@ -32,8 +35,13 @@ func _process(delta):
 					if playbackCursor >= recordingTimes.size():
 						playbackCursor = 0
 						time = 0
+						if original_teleporter:
+							original_teleporter.play("activate")
 						break
-				position = recordingPositions[playbackCursor]
+				var offset = Vector2()
+				if agitation > 0:
+					offset = Vector2(rand_range(-agitation*20, agitation*20), rand_range(-agitation*20, agitation*20))
+				position = recordingPositions[playbackCursor] + offset
 
 	# Search for all other visible `players`
 	var space_state = get_world_2d().direct_space_state
@@ -46,7 +54,19 @@ func _process(delta):
 				var intersection = space_state.intersect_ray(position, child.position, [self, child])
 				if !intersection:
 					see = true
+	
 	$exclamation.visible = see
+	if see:
+		agitation += delta
+		if agitation > 1:
+			var explosion = explode.instance()
+			get_parent().add_child(explosion)
+			explosion.position = position
+			queue_free()
+	else:
+		if agitation>0:
+			agitation -= delta
+		
 
 func movement(delta):
 	inputVector = Vector2(0,0)

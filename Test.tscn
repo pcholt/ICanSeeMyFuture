@@ -6,16 +6,33 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 187.865, 182.418 )
+position = Vector2( 87.0616, 355.49 )
 
 [node name="Teleporter" parent="." instance=ExtResource( 2 )]
-position = Vector2( 232.158, 169.27 )
+position = Vector2( 149.447, 339.86 )
 
 [node name="Teleporter2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 492.904, 205.203 )
+position = Vector2( 845.717, 92.7679 )
 
 [node name="Teleporter3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 320.572, 478.705 )
+position = Vector2( 409.744, 62.567 )
 
 [node name="Teleporter4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 721.823, 399.827 )
+position = Vector2( 756.717, 496.754 )
+
+[node name="Teleporter5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 547.355, 324.87 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( -4.52197, 55.7716 )
+polygon = PoolVector2Array( 277.419, 87.3635, 322.639, 144.642, 297.014, 275.781, 407.05, 340.597, 408.557, 155.194, 509.549, 73.7975, 639.18, 162.73, 584.916, 307.435, 498.261, 278.141, 518.938, 439.685, 621.092, 544.087, 661.79, 336.075, 753.738, 218.502, 660.283, 61.7387, 408.557, 39.1287 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( -25.7756, -25.7755 )
+polygon = PoolVector2Array( 250.388, 399.245, 134.398, 397.813, 60.3618, 400.89, 64.8838, 474.75, 111.611, 565.19, 188.486, 550.117, 265.36, 589.308, 253.301, 516.955, 268.375, 444.603 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 16.5808, 3.01471 )
+polygon = PoolVector2Array( 726.606, 103.944, 768.811, 171.775, 842.671, 265.23, 875.833, 343.611, 848.7, 420.486, 808.002, 483.794, 684.4, 560.668, 892.413, 568.205, 1005.46, 388.831, 916.531, 135.598 )

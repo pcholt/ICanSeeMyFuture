@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Teleport.png-6a01794af41dcb3eb6dbd2a2cc88e51a.stex"
+path="res://.import/Player_rh.png-6f5223b3dc7ecd30d97610647f49badb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Teleport.png"
-dest_files=[ "res://.import/Teleport.png-6a01794af41dcb3eb6dbd2a2cc88e51a.stex" ]
+source_file="res://Player_rh.png"
+dest_files=[ "res://.import/Player_rh.png-6f5223b3dc7ecd30d97610647f49badb.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
