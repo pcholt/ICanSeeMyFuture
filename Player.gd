@@ -106,6 +106,8 @@ func movement(delta):
 		inputVector += Vector2(1,0)
 		$AnimatedSprite.play("run")
 		$AnimatedSprite.flip_h = false
+	if Input.is_action_pressed("escape"):
+		get_tree().quit()
 	if Input.is_action_pressed("left"):
 		inputVector += Vector2(-1,0)
 		$AnimatedSprite.play("run")

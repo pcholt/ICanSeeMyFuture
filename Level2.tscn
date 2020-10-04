@@ -99,3 +99,16 @@ what you are doing."
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 48.0
+margin_top = 232.0
+margin_right = 389.0
+margin_bottom = 280.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Press R
+to reset
+if you get stuck"
+__meta__ = {
+"_edit_use_anchors_": false
+}
