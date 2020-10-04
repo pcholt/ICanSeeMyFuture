@@ -1,38 +1,115 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Teleporter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tiles.png" type="Texture" id=3]
+[ext_resource path="res://trigger.tscn" type="PackedScene" id=4]
+
+[sub_resource type="OccluderPolygon2D" id=7]
+polygon = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=8]
+polygon = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=9]
+polygon = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=10]
+polygon = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=11]
+polygon = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="TileSet" id=1]
+0/name = "tiles.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 96, 16 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [ Vector2( 1, 0 ), SubResource( 7 ), Vector2( 2, 0 ), SubResource( 8 ), Vector2( 3, 0 ), SubResource( 9 ), Vector2( 4, 0 ), SubResource( 10 ), Vector2( 5, 0 ), SubResource( 11 ) ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [ {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 87.0616, 355.49 )
+position = Vector2( 76.4268, 188.939 )
 
 [node name="Teleporter" parent="." instance=ExtResource( 2 )]
-position = Vector2( 149.447, 339.86 )
+position = Vector2( 150.721, 255.135 )
 
 [node name="Teleporter2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 845.717, 92.7679 )
+position = Vector2( 496.649, 207.175 )
 
 [node name="Teleporter3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 409.744, 62.567 )
+position = Vector2( 281.46, 238.872 )
 
 [node name="Teleporter4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 756.717, 496.754 )
 
 [node name="Teleporter5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 547.355, 324.87 )
+position = Vector2( 348.899, 63.6328 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 16, 16 )
+occluder_light_mask = 3
+format = 1
+tile_data = PoolIntArray( 0, 0, 4, 65536, 0, 4, 131072, 0, 4, 196608, 0, 4, 262144, 0, 4, 327680, 0, 4, 393216, 0, 4, 393234, 0, 4, 393235, 0, 4, 393236, 0, 4, 393237, 0, 4, 393238, 0, 4, 393239, 0, 4, 393240, 0, 4, 393241, 0, 4, 458752, 0, 4, 524288, 0, 4, 589824, 0, 4, 655360, 0, 4, 720896, 0, 4, 786432, 0, 4, 786433, 0, 4, 786453, 0, 4, 786454, 0, 4, 786455, 0, 4, 786456, 0, 4, 786457, 0, 4, 851968, 0, 4, 851969, 0, 4, 917504, 0, 4, 917505, 0, 4, 917506, 0, 4, 917507, 0, 4, 917508, 0, 4, 917509, 0, 4, 917510, 0, 4, 917518, 0, 4, 917519, 0, 4, 983040, 0, 4, 983041, 0, 4, 983042, 0, 4, 983043, 0, 4, 983044, 0, 4, 983045, 0, 4, 983046, 0, 4, 983054, 0, 4, 983055, 0, 4, 983068, 0, 4, 983069, 0, 4, 983070, 0, 4, 983071, 0, 4, 1048576, 0, 4, 1048577, 0, 4, 1048578, 0, 4, 1048579, 0, 4, 1048588, 0, 1, 1048589, 0, 1, 1048590, 0, 4, 1048591, 0, 4, 1114112, 0, 4, 1114113, 0, 4, 1114114, 0, 4, 1114115, 0, 4, 1114116, 0, 4, 1114117, 0, 4, 1114118, 0, 4, 1114119, 0, 4, 1114124, 0, 4, 1114125, 0, 4, 1114126, 0, 4, 1114127, 0, 4, 1114128, 0, 4, 1114129, 0, 4, 1114130, 0, 4, 1114131, 0, 4, 1114132, 0, 4, 1179648, 0, 4, 1179649, 0, 4, 1179650, 0, 4, 1179651, 0, 4, 1179652, 0, 4, 1179653, 0, 4, 1179654, 0, 4, 1179655, 0, 4, 1179656, 0, 4, 1179657, 0, 4, 1179658, 0, 4, 1179659, 0, 4, 1179660, 0, 4, 1179661, 0, 4, 1179662, 0, 4, 1179663, 0, 4, 1179664, 0, 4, 1179665, 0, 4, 1179666, 0, 4, 1179667, 0, 4, 1179668, 0, 4, 1179669, 0, 4, 1179670, 0, 4, 1179671, 0, 4, 1179672, 0, 4, 1179673, 0, 4, 1179674, 0, 4, 1179675, 0, 4, 1179676, 0, 4, 1179677, 0, 4, 1245184, 0, 4, 1245196, 0, 4, 1245197, 0, 4, 1310720, 0, 4, 1310732, 0, 4, 1310733, 0, 4, 1376256, 0, 4, 1376268, 0, 4, 1376269, 0, 4, 1376270, 0, 1, 1441792, 0, 4, 1441804, 0, 4, 1441805, 0, 4, 1441806, 0, 1, 1507328, 0, 4, 1507340, 0, 1, 1507341, 0, 1, 1507342, 0, 1, 1507346, 0, 4, 1507347, 0, 4, 1638397, 0, 1, 1638398, 0, 1, 1638399, 0, 3, 1572864, 0, 3, 1572865, 0, 3, 1572866, 0, 3, 1572867, 0, 3, 1572868, 0, 1, 1572869, 0, 1, 1572870, 0, 1, 1572871, 0, 1, 1572872, 0, 1, 1572873, 0, 1, 1572874, 0, 2, 1572875, 0, 2, 1572876, 0, 2, 1572877, 0, 2, 1572878, 0, 1, 1572879, 0, 1, 1572880, 0, 1, 1572881, 0, 1, 1572882, 0, 1, 1703933, 0, 1, 1703934, 0, 1, 1703935, 0, 1, 1638400, 0, 1, 1638401, 0, 1, 1638402, 0, 1, 1638403, 0, 1, 1638404, 0, 1, 1638405, 0, 1, 1638406, 0, 1, 1638407, 0, 1, 1638408, 0, 1, 1638409, 0, 1, 1638410, 0, 2, 1638411, 0, 2, 1638412, 0, 2, 1638413, 0, 2, 1638414, 0, 1, 1638415, 0, 1, 1638416, 0, 1, 1638417, 0, 1, 1638418, 0, 1, 1638419, 0, 1, 1638420, 0, 1, 1638421, 0, 1, 1638422, 0, 1 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2( -4.52197, 55.7716 )
-polygon = PoolVector2Array( 277.419, 87.3635, 322.639, 144.642, 297.014, 275.781, 407.05, 340.597, 408.557, 155.194, 509.549, 73.7975, 639.18, 162.73, 584.916, 307.435, 498.261, 278.141, 518.938, 439.685, 621.092, 544.087, 661.79, 336.075, 753.738, 218.502, 660.283, 61.7387, 408.557, 39.1287 )
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2( -25.7756, -25.7755 )
-polygon = PoolVector2Array( 250.388, 399.245, 134.398, 397.813, 60.3618, 400.89, 64.8838, 474.75, 111.611, 565.19, 188.486, 550.117, 265.36, 589.308, 253.301, 516.955, 268.375, 444.603 )
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2( 16.5808, 3.01471 )
-polygon = PoolVector2Array( 726.606, 103.944, 768.811, 171.775, 842.671, 265.23, 875.833, 343.611, 848.7, 420.486, 808.002, 483.794, 684.4, 560.668, 892.413, 568.205, 1005.46, 388.831, 916.531, 135.598 )
+[node name="trigger" parent="TileMap" instance=ExtResource( 4 )]
+position = Vector2( 238.831, 223.573 )

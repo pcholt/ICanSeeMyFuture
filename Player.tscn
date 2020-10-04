@@ -1,27 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player_rh.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://see my future.png" type="Texture" id=3]
-[ext_resource path="res://shadow.png" type="Texture" id=4]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 7.20358
-height = 14.2488
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.02509, 12 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 2
 script = ExtResource( 2 )
 
-[node name="shadow" type="Sprite" parent="."]
-position = Vector2( 0.30661, 13.7356 )
-texture = ExtResource( 4 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="skin" type="Sprite" parent="."]
-position = Vector2( 0.237823, -1.90262 )
+position = Vector2( 0.102547, -4.06704 )
 texture = ExtResource( 1 )
 hframes = 7
 
@@ -29,3 +23,9 @@ hframes = 7
 position = Vector2( -2.76602, -34.0167 )
 scale = Vector2( 1.68047, 2.92439 )
 texture = ExtResource( 3 )
+
+[node name="camera" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_top = 0
+smoothing_enabled = true

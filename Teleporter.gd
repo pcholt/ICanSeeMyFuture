@@ -20,13 +20,14 @@ func _on_Teleporter_body_exited(body):
 			"initial":
 				body.time = 0
 				body.playbackCursor = 0
-				body.mode = "record"
+				body.mode = "record" 
 				if body.original_teleporter:
 					body.original_teleporter.play("activate")
 			_ :
 				body.time = 0
 				body.playbackCursor = 0
 				body.mode = "playback"
+				body.camera.current = false
 				if body.original_teleporter:
 					body.original_teleporter.play("activate")
 				

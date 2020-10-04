@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name Player, "res://Player2.png"
 
 var inputVector
-export var speed = 200
+export var speed = 10
 var mode = "initial"
 var recordingPositions = []
 var recordingTimes = []
@@ -12,6 +12,7 @@ var playbackCursor = 0
 export var creation_order = 0 # increment when creating new players
 onready var explode = preload("res://Explode.tscn")
 var original_teleporter 
+onready var camera = $camera
 
 func _ready():
 	pass
@@ -68,14 +69,25 @@ func _process(delta):
 			agitation -= delta
 		
 
+var velocity = Vector2()
+var gravity = 2500
+
 func movement(delta):
+	var jump
 	inputVector = Vector2(0,0)
 	if Input.is_action_pressed("right"): inputVector += Vector2(1,0)
 	if Input.is_action_pressed("left"): inputVector += Vector2(-1,0)
-	if Input.is_action_pressed("up"): inputVector += Vector2(0,-1)
-	if Input.is_action_pressed("down"): inputVector += Vector2(0,1)
-	if Input.is_action_pressed("ui_select"):
-		mode = "playback"
-		time = 0 
+	if Input.is_action_pressed("up") and is_on_floor(): jump = true
+
+	if jump:
+		velocity.y = -600
+	else:
+		velocity.x = inputVector.x * speed * 10
 	
-	move_and_collide(inputVector * speed * delta)
+func _physics_process(delta):
+	if mode != "playback":
+		velocity.y += gravity * delta
+		velocity = move_and_slide(velocity, Vector2(0,-1), true)
+		
+
+	
