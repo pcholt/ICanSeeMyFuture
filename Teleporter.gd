@@ -28,6 +28,7 @@ func _on_Teleporter_body_exited(body):
 				body.playbackCursor = 0
 				body.mode = "playback"
 				body.camera.current = false
+				body.remove_animations()
 				if body.original_teleporter:
 					body.original_teleporter.play("activate")
 				

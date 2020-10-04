@@ -22,6 +22,9 @@ func _ready():
 func hide():
 	$AnimatedSprite.visible = false
 
+func remove_animations():
+	$AnimatedSprite.stop()
+
 func _process(delta):
 	match mode:
 		"insideTeleporter":
@@ -37,7 +40,9 @@ func _process(delta):
 				{
 					position = position,
 					time = time,
-					button_pressed = button_pressed
+					button_pressed = button_pressed,
+					frame = $AnimatedSprite.frame,
+					flip_h = $AnimatedSprite.flip_h
 				}
 			)
 			button_pressed = null
@@ -55,6 +60,8 @@ func _process(delta):
 					var press = record[playbackCursor].button_pressed
 					if press:
 						press.buttonPressAction()
+					$AnimatedSprite.frame = record[playbackCursor].frame
+					$AnimatedSprite.flip_h = record[playbackCursor].flip_h
 				var offset = Vector2()
 				if agitation > 0:
 					offset = Vector2(rand_range(-agitation*20, agitation*20), rand_range(-agitation*20, agitation*20))
@@ -87,7 +94,7 @@ func _process(delta):
 		
 
 var velocity = Vector2()
-var gravity = 2500
+var gravity = 300
 
 func _on_buttonPress(trigger):
 	button_pressed = trigger
@@ -109,7 +116,7 @@ func movement(delta):
 		get_tree().reload_current_scene()
 
 	if jump:
-		velocity.y = -600
+		velocity.y = -250
 		$AnimatedSprite.play("jump")
 	else:
 		if inputVector.length_squared()<.1:

@@ -4,7 +4,7 @@
 [ext_resource path="res://Teleporter.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://exit.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Test.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Level3.tscn" type="PackedScene" id=5]
 [ext_resource path="res://door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://trigger.tscn" type="PackedScene" id=7]
 
@@ -87,3 +87,15 @@ default_color = Color( 0.882353, 1, 0.4, 1 )
 
 [node name="door" parent="Area2D2" instance=ExtResource( 6 )]
 position = Vector2( 192, 40 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 64.0
+margin_top = 72.0
+margin_right = 104.0
+margin_bottom = 86.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Your past selves are useful, as long as they never see
+what you are doing."
+__meta__ = {
+"_edit_use_anchors_": false
+}

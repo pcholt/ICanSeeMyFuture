@@ -30,5 +30,5 @@ smoothing_enabled = true
 position = Vector2( 0, -3 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 2
+frame = 3
 playing = true
