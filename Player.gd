@@ -6,6 +6,7 @@ export var speed = 10
 var mode = "initial"
 var recordingPositions = []
 var recordingTimes = []
+var record = []
 var time = 0
 var agitation = 0
 var playbackCursor = 0
@@ -13,9 +14,13 @@ export var creation_order = 0 # increment when creating new players
 onready var explode = preload("res://Explode.tscn")
 var original_teleporter 
 onready var camera = $camera
+var button_pressed
 
 func _ready():
 	pass
+	
+func hide():
+	$AnimatedSprite.visible = false
 
 func _process(delta):
 	match mode:
@@ -28,6 +33,14 @@ func _process(delta):
 			movement(delta)
 			recordingPositions.append(position)
 			recordingTimes.append(time)
+			record.append(
+				{
+					position = position,
+					time = time,
+					button_pressed = button_pressed
+				}
+			)
+			button_pressed = null
 		"playback":
 			time += delta
 			if recordingTimes.size() > playbackCursor:
@@ -39,10 +52,14 @@ func _process(delta):
 						if original_teleporter:
 							original_teleporter.play("activate")
 						break
+					var press = record[playbackCursor].button_pressed
+					if press:
+						press.buttonPressAction()
 				var offset = Vector2()
 				if agitation > 0:
 					offset = Vector2(rand_range(-agitation*20, agitation*20), rand_range(-agitation*20, agitation*20))
 				position = recordingPositions[playbackCursor] + offset
+					
 
 	# Search for all other visible `players`
 	var space_state = get_world_2d().direct_space_state
@@ -72,22 +89,39 @@ func _process(delta):
 var velocity = Vector2()
 var gravity = 2500
 
+func _on_buttonPress(trigger):
+	button_pressed = trigger
+
 func movement(delta):
 	var jump
 	inputVector = Vector2(0,0)
-	if Input.is_action_pressed("right"): inputVector += Vector2(1,0)
-	if Input.is_action_pressed("left"): inputVector += Vector2(-1,0)
-	if Input.is_action_pressed("up") and is_on_floor(): jump = true
+	if Input.is_action_pressed("right"): 
+		inputVector += Vector2(1,0)
+		$AnimatedSprite.play("run")
+		$AnimatedSprite.flip_h = false
+	if Input.is_action_pressed("left"):
+		inputVector += Vector2(-1,0)
+		$AnimatedSprite.play("run")
+		$AnimatedSprite.flip_h = true
+	if Input.is_action_pressed("up") and is_on_floor(): 
+		jump = true
+	if Input.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
 
 	if jump:
 		velocity.y = -600
+		$AnimatedSprite.play("jump")
 	else:
+		if inputVector.length_squared()<.1:
+			$AnimatedSprite.play("idle")
 		velocity.x = inputVector.x * speed * 10
 	
 func _physics_process(delta):
 	if mode != "playback":
 		velocity.y += gravity * delta
 		velocity = move_and_slide(velocity, Vector2(0,-1), true)
+		
+	
 		
 
 	
